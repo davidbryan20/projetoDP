@@ -1,57 +1,36 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import UserForm from '../../../components/UseForm';
+import React from 'react';
+import "../../../styles/global.css";
 
-const UserManagement = () => {
-  const [users, setUsers] = useState([]);
-  const [editingUser, setEditingUser] = useState(null);
-
-  useEffect(() => {
-    // Carregar usuários ao inicializar
-    const loadUsers = async () => {
-      const response = await axios.get('/api/users');
-      setUsers(response.data);
-    };
-    loadUsers();
-  }, []);
-
-  const handleEdit = (user) => {
-    setEditingUser(user);
-  };
-
-  const handleDelete = async (id) => {
-    await axios.delete(`/api/users/${id}`);
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
-  const handleCreateOrUpdateUser = async (user) => {
-    if (editingUser) {
-      // Atualizar usuário
-      await axios.put(`/api/users/${editingUser.id}`, user);
-      setUsers(users.map((u) => (u.id === editingUser.id ? user : u)));
-    } else {
-      // Criar novo usuário
-      const response = await axios.post('/api/users', user);
-      setUsers([...users, response.data]);
-    }
-    setEditingUser(null);
-  };
-
+export default function UserManagement() {
   return (
-    <div>
-      <h1>Gerenciamento de Usuários</h1>
-      <UserForm user={editingUser} onSubmit={handleCreateOrUpdateUser} />
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <span>{user.username} ({user.email})</span>
-            <button onClick={() => handleEdit(user)}>Editar</button>
-            <button onClick={() => handleDelete(user.id)}>Deletar</button>
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800">
+      <div className="bg-gray-900 p-8 rounded-lg shadow-md w-full max-w-4xl">
+        <h1 className="text-2xl font-bold text-white mb-6 text-center">User Management</h1>
+        <table className="w-full text-white">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>RM</th>
+              <th>CPF</th>
+              <th>RG</th>
+              <th>Profession</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>123456</td>
+              <td>12345678901</td>
+              <td>987654321</td>
+              <td>Software Engineer</td>
+              <td>Edit | Delete</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-};
-
-export default UserManagement;
+}
