@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../../styles/global.css"; 
 
 export default function Register() {
   return (
@@ -37,7 +38,7 @@ export default function Register() {
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md">Register</button>
         </form>
         <p className="text-white mt-4 text-center">
-          Already have an account? <a href="/login" className="text-blue-500">Log in</a>
+          Already have an account? <a href="/pages/login" className="text-blue-500">Log in</a>
         </p>
       </div>
     </div>
