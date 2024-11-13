@@ -21,11 +21,11 @@ export default function UserManagement() {
           <tbody>
             <tr>
               <td>1</td>
-              <td>John Doe</td>
-              <td>123456</td>
-              <td>12345678901</td>
-              <td>987654321</td>
-              <td>Software Engineer</td>
+              <td>David Bryan</td>
+              <td>551235</td>
+              <td>84320480932</td>
+              <td>987654343</td>
+              <td>ADS</td>
               <td>Edit | Delete</td>
             </tr>
           </tbody>
